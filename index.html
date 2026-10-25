@@ -13,6 +13,7 @@
 <meta property="og:url" content="https://farukoguz.github.io/">
 <meta property="og:image" content="https://farukoguz.github.io/photo.png">
 <meta name="twitter:card" content="summary">
+<script>document.documentElement.classList.add("js")</script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231b1b1b'/%3E%3Ctext x='32' y='43' font-family='Helvetica,Arial,sans-serif' font-size='30' font-weight='700' fill='%23fff' text-anchor='middle'%3ERO%3C/text%3E%3C/svg%3E">
 <style>
   :root {
@@ -24,10 +25,10 @@
     --link: #0b5cad;
   }
   * { box-sizing: border-box; }
-  html { -webkit-text-size-adjust: 100%; }
+  html { -webkit-text-size-adjust: 100%; background: var(--paper); scroll-behavior: smooth; }
   body {
     margin: 0;
-    background: var(--paper);
+    background: transparent;
     color: var(--body);
     font-family: "Avenir Next", "Helvetica Neue", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
     font-size: 17px;
@@ -92,6 +93,15 @@
   .contact li { display: flex; align-items: baseline; gap: .45rem; }
   .contact li::before { content: ""; width: 4px; height: 4px; border-radius: 50%; background: #c9c9c9; }
   .contact li:first-child::before { display: none; }
+  .contact a {
+    border-bottom: 0;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    background-size: 0% 1px;
+    transition: background-size .3s ease, color .2s ease;
+  }
+  .contact a:hover { background-size: 100% 1px; color: var(--ink); }
 
   .actions { display: flex; flex-wrap: wrap; gap: .6rem; }
   .btn {
@@ -105,18 +115,25 @@
     font-weight: 600;
     letter-spacing: .01em;
     border-bottom: 1px solid var(--ink);
+    transition: transform .25s ease, box-shadow .25s ease, background .2s ease, border-color .2s ease;
   }
-  .btn:hover { background: #000; }
+  .btn:hover { background: #000; transform: translateY(-2px); box-shadow: 0 10px 22px -12px rgba(0,0,0,.7); }
+  .btn:active { transform: translateY(0); box-shadow: none; }
+  .btn .arrow { display: inline-block; transition: transform .25s ease; }
+  .btn:hover .arrow { transform: translateY(3px); }
   .btn.ghost { background: transparent; color: var(--ink); border-color: #cfcfcf; }
   .btn.ghost:hover { background: #f6f6f6; border-color: #9c9c9c; }
 
   .portrait {
-    width: 152px; height: 152px;
+    width: 100%; height: 100%;
     border-radius: 50%;
     object-fit: cover;
     display: block;
     background: #f2f2f2;
+    transition: transform .6s cubic-bezier(.2,.7,.2,1);
   }
+  .portrait-wrap { position: relative; width: 152px; height: 152px; }
+  .portrait-wrap:hover .portrait { transform: scale(1.03); }
 
   /* ---------- sections ---------- */
   main { padding-bottom: 24px; }
@@ -130,9 +147,15 @@
     color: var(--ink);
     display: flex; align-items: center; gap: 1rem;
   }
-  h2::after { content: ""; flex: 1; height: 1px; background: var(--rule); }
+  h2::after { content: ""; flex: 1; height: 1px; background: var(--rule); transform-origin: 0 50%; }
 
-  .job { padding: 1.5rem 0 0; margin-top: 1.5rem; border-top: 1px solid var(--rule); }
+  .job { padding: 1.5rem 0 0; margin-top: 1.5rem; border-top: 1px solid var(--rule); position: relative; }
+  .job::before {
+    content: ""; position: absolute; left: -18px; top: 1.5rem; bottom: .2rem; width: 2px;
+    background: var(--ink); opacity: 0; transform: scaleY(.45); transform-origin: top;
+    transition: opacity .35s ease, transform .35s cubic-bezier(.2,.7,.2,1);
+  }
+  .job:hover::before { opacity: .3; transform: scaleY(1); }
   .job:first-of-type { border-top: 0; margin-top: 0; padding-top: 0; }
   .job-head { display: flex; justify-content: space-between; align-items: baseline; gap: 1.5rem; flex-wrap: wrap; }
   .job h3 {
@@ -187,13 +210,94 @@
   @media (max-width: 680px) {
     body { font-size: 16px; }
     .hero { grid-template-columns: 1fr; gap: 22px; padding-top: 40px; }
-    .portrait { width: 104px; height: 104px; order: -1; }
+    .portrait-wrap { width: 104px; height: 104px; order: -1; }
     .jobs .job-head { display: block; }
     .dates { margin-top: .1rem; }
     .skills { grid-template-columns: 1fr; gap: .1rem; }
     .skills dt { margin-top: .7rem; }
     .skills dd { padding-bottom: .35rem; border-bottom: 1px solid #f0f0f0; }
     footer { display: block; }
+  }
+
+  /* ---------- motion ---------- */
+  body::before {
+    content: "";
+    position: fixed; inset: -22vmax; z-index: -1; pointer-events: none;
+    background:
+      radial-gradient(38vmax 38vmax at 16% 6%, rgba(11, 92, 173, .075), transparent 62%),
+      radial-gradient(30vmax 30vmax at 92% 24%, rgba(27, 27, 27, .055), transparent 64%);
+    animation: drift 26s ease-in-out infinite alternate;
+  }
+  @keyframes drift {
+    from { transform: translate3d(-1.5%, -1%, 0); }
+    to   { transform: translate3d(1.5%, 1.5%, 0); }
+  }
+
+  .progress { position: fixed; inset: 0 0 auto; height: 3px; z-index: 50; pointer-events: none; }
+  .progress span {
+    display: block; height: 100%; transform: scaleX(0); transform-origin: 0 50%;
+    background: linear-gradient(90deg, var(--ink), var(--link));
+    will-change: transform;
+  }
+
+  .hero-copy > * { animation: rise .85s cubic-bezier(.2, .7, .2, 1) both; }
+  .hero .eyebrow  { animation-delay: .04s; }
+  .hero h1        { animation-delay: .11s; }
+  .hero .role     { animation-delay: .19s; }
+  .hero .summary  { animation-delay: .27s; }
+  .hero .contact  { animation-delay: .35s; }
+  .hero .actions  { animation-delay: .43s; }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: none; }
+  }
+
+  .portrait-wrap { animation: pop .95s cubic-bezier(.2, .7, .2, 1) both .18s; }
+  @keyframes pop {
+    from { opacity: 0; transform: scale(.93); }
+    to   { opacity: 1; transform: none; }
+  }
+  .portrait-ring {
+    position: absolute; inset: -7px; border-radius: 50%;
+    background: conic-gradient(from 0deg,
+      rgba(11, 92, 173, .85), rgba(11, 92, 173, .05) 32%,
+      rgba(27, 27, 27, .45) 62%, rgba(11, 92, 173, .85));
+    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 3px));
+    mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 3px));
+    opacity: .65;
+    animation: spin 18s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(1turn); } }
+
+  .js .reveal { opacity: 0; transform: translateY(16px); }
+  .js .reveal.in {
+    opacity: 1; transform: none;
+    transition:
+      opacity .7s cubic-bezier(.2, .7, .2, 1) var(--d, 0ms),
+      transform .7s cubic-bezier(.2, .7, .2, 1) var(--d, 0ms);
+  }
+  .js h2::after { transform: scaleX(0); transition: transform .9s cubic-bezier(.2, .7, .2, 1) .15s; }
+  .js .reveal.in h2::after { transform: scaleX(1); }
+
+  .totop {
+    position: fixed; right: 22px; bottom: 22px; width: 44px; height: 44px;
+    display: grid; place-items: center; z-index: 45;
+    border: 0; border-radius: 50%; cursor: pointer;
+    background: var(--ink); color: #fff; font-size: 1.05rem; line-height: 1;
+    box-shadow: 0 12px 26px -12px rgba(0, 0, 0, .75);
+    opacity: 0; transform: translateY(14px) scale(.9); pointer-events: none;
+    transition: opacity .3s ease, transform .3s cubic-bezier(.2, .7, .2, 1), background .2s ease;
+  }
+  .totop.show { opacity: 1; transform: none; pointer-events: auto; }
+  .totop:hover { background: #000; transform: translateY(-2px); }
+  .totop:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .js .reveal { opacity: 1; transform: none; }
+    .js h2::after { transform: none; }
+    .progress span { transform: none; }
   }
 
   /* ---------- printing ---------- */
@@ -230,16 +334,22 @@
     .edu p { font-size: 8.1pt; }
     .skills { grid-template-columns: 40mm minmax(0, 1fr); gap: .2rem 4mm; }
     a { color: #1b1b1b; border-bottom: 0; }
+    .progress, .totop, .portrait-ring, body::before { display: none !important; }
+    .hero-copy > *, .portrait-wrap { animation: none !important; }
+    .js .reveal, .js .reveal.in { opacity: 1 !important; transform: none !important; transition: none !important; }
+    .js h2::after, .js .reveal.in h2::after { transform: none !important; }
+    .job::before { display: none !important; }
   }
 </style>
 </head>
 <body>
+<div class="progress" aria-hidden="true"><span></span></div>
 <a class="skip" href="#main">Skip to content</a>
 
 <div class="wrap">
 
   <header class="hero">
-    <div>
+    <div class="hero-copy">
       <p class="eyebrow">Porto, Portugal</p>
       <h1>Ramazan Faruk Oğuz</h1>
       <p class="role">Senior Software Engineer <span>·</span> Java <span>·</span> Apache Spark <span>·</span> Kafka <span>·</span> Azure</p>
@@ -256,19 +366,22 @@
         <li><a href="https://scholar.google.com/citations?user=JLtGY48AAAAJ" rel="me">Google Scholar</a></li>
       </ul>
       <div class="actions">
-        <a class="btn" href="Ramazan_Faruk_Oguz_CV.pdf" download>Download CV <span aria-hidden="true">↓</span> PDF</a>
+        <a class="btn" href="Ramazan_Faruk_Oguz_CV.pdf" download>Download CV <span class="arrow" aria-hidden="true">↓</span> PDF</a>
         <a class="btn ghost" href="mailto:farukoguz98@gmail.com">Email me</a>
       </div>
     </div>
-    <img class="portrait" src="photo.png" alt="Portrait of Ramazan Faruk Oğuz" width="800" height="800">
+    <div class="portrait-wrap">
+      <div class="portrait-ring" aria-hidden="true"></div>
+      <img class="portrait" src="photo.png" alt="Portrait of Ramazan Faruk Oğuz" width="800" height="800">
+    </div>
   </header>
 
   <main id="main">
 
-    <section aria-labelledby="experience">
+    <section class="reveal" aria-labelledby="experience">
       <h2 id="experience">Experience</h2>
 
-      <article class="job">
+      <article class="job reveal">
         <div class="job-head">
           <h3>Rockstar Developer <span class="track">(Senior Software Engineer track)</span></h3>
           <p class="dates">Jul 2022 – Present</p>
@@ -286,7 +399,7 @@
         <p class="stack">Java · Apache Spark · Structured Streaming · Kafka · Azure HDInsight · GitHub Actions · LLM APIs · Angular · JavaScript</p>
       </article>
 
-      <article class="job">
+      <article class="job reveal">
         <div class="job-head">
           <h3>Software Engineering Consultant</h3>
           <p class="dates">Jul 2022 – Aug 2023</p>
@@ -299,7 +412,7 @@
         <p class="stack">Java · Apache Spark · Docker</p>
       </article>
 
-      <article class="job">
+      <article class="job reveal">
         <div class="job-head">
           <h3>Senior Software Engineer</h3>
           <p class="dates">Apr 2021 – Jul 2022</p>
@@ -316,7 +429,7 @@
         <p class="stack">Java 8 · Spring Boot · REST · gRPC · Kafka · Apache NiFi · Jenkins · OpenShift</p>
       </article>
 
-      <article class="job">
+      <article class="job reveal">
         <div class="job-head">
           <h3>Junior Software Engineer</h3>
           <p class="dates">Jul 2020 – Mar 2021</p>
@@ -329,7 +442,7 @@
         <p class="stack">Java 8 · Spring Boot · JUnit · Mockito</p>
       </article>
 
-      <article class="job">
+      <article class="job reveal">
         <div class="job-head">
           <h3>Software Expert</h3>
           <p class="dates">Mar 2020 – Jun 2020</p>
@@ -342,7 +455,7 @@
         <p class="stack">Python · pandas · NumPy · Matplotlib</p>
       </article>
 
-      <article class="job">
+      <article class="job reveal">
         <div class="job-head">
           <h3>Student Assistant</h3>
           <p class="dates">Oct 2019 – Apr 2020</p>
@@ -353,7 +466,7 @@
         </ul>
       </article>
 
-      <article class="job">
+      <article class="job reveal">
         <div class="job-head">
           <h3>Scholarship Holder</h3>
           <p class="dates">Oct 2019 – Mar 2020</p>
@@ -364,7 +477,7 @@
         </ul>
       </article>
 
-      <article class="job">
+      <article class="job reveal">
         <div class="job-head">
           <h3>Summer Intern</h3>
           <p class="dates">Jun 2019 – Aug 2019</p>
@@ -375,7 +488,7 @@
         </ul>
       </article>
 
-      <article class="job">
+      <article class="job reveal">
         <div class="job-head">
           <h3>Summer Intern</h3>
           <p class="dates">Jun 2018 – Aug 2018</p>
@@ -388,16 +501,16 @@
       </article>
     </section>
 
-    <section aria-labelledby="education">
+    <section class="reveal" aria-labelledby="education">
       <h2 id="education">Education</h2>
-      <div class="edu">
+      <div class="edu reveal">
         <div class="edu-head">
           <h3>Yıldız Technical University — MS, Computer Science</h3>
           <p class="dates">2020 – 2022</p>
         </div>
         <p>GPA 3.86 / 4.00 · Thesis: End-to-end automated UI testing framework for web applications with intensive user-system interaction.</p>
       </div>
-      <div class="edu">
+      <div class="edu reveal">
         <div class="edu-head">
           <h3>Yıldız Technical University — BSc, Computer Engineering</h3>
           <p class="dates">2016 – 2020</p>
@@ -406,9 +519,9 @@
       </div>
     </section>
 
-    <section aria-labelledby="skills">
+    <section class="reveal" aria-labelledby="skills">
       <h2 id="skills">Skills</h2>
-      <dl class="skills">
+      <dl class="skills reveal">
         <dt>Languages</dt><dd>Java, Python, C#, SQL, COBOL, PL/I, JCL</dd>
         <dt>Big Data</dt><dd>Apache Spark (Structured Streaming, batch), Apache Kafka, Apache NiFi, Azure HDInsight</dd>
         <dt>Backend</dt><dd>Spring Boot, REST, gRPC, Microservices</dd>
@@ -419,9 +532,9 @@
       </dl>
     </section>
 
-    <section aria-labelledby="publications">
+    <section class="reveal" aria-labelledby="publications">
       <h2 id="publications">Publications</h2>
-      <ol class="pubs">
+      <ol class="pubs reveal">
         <li>Y. Uygun, R.F. Oğuz, E. Ölmezoğulları, M.S. Aktaş. “On the large-scale graph data processing for user interface testing in big data science projects.” <span class="venue">IEEE BigData 2020</span>, pp. 2049–2056.</li>
         <li>I. Erdem, R.F. Oğuz, E. Ölmezoğulları, M.S. Aktaş. “Test script generation based on hidden Markov models learning from user browsing behaviors.” <span class="venue">IEEE BigData 2021</span>, pp. 2998–3005.</li>
         <li>R.F. Oğuz, M. Öz, E. Ölmezoğulları, M.S. Aktaş. “Extracting information from large scale graph data: case study on automated UI testing.” <span class="venue">Euro-Par 2021 Workshops, LNCS</span>, pp. 364–375.</li>
@@ -431,9 +544,9 @@
       <p class="note">132 citations, h-index 6 — <a href="https://scholar.google.com/citations?user=JLtGY48AAAAJ">Google Scholar profile</a></p>
     </section>
 
-    <section aria-labelledby="languages">
+    <section class="reveal" aria-labelledby="languages">
       <h2 id="languages">Languages</h2>
-      <p>English — professional working proficiency · Portuguese — intermediate · German — beginner</p>
+      <p class="reveal">English — professional working proficiency · Portuguese — intermediate · German — beginner</p>
     </section>
 
   </main>
@@ -463,5 +576,65 @@
   ]
 }
 </script>
+<button class="totop" type="button" aria-label="Back to top">↑</button>
+
+<script>
+(function () {
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var bar = document.querySelector('.progress span');
+  var top = document.querySelector('.totop');
+  var ticking = false;
+
+  function frame() {
+    var el = document.documentElement;
+    var max = el.scrollHeight - el.clientHeight;
+    if (bar) bar.style.transform = 'scaleX(' + (max > 0 ? el.scrollTop / max : 0) + ')';
+    if (top) top.classList.toggle('show', el.scrollTop > 600);
+    ticking = false;
+  }
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(frame);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  if (top) {
+    top.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+    });
+  }
+
+  var items = [].slice.call(document.querySelectorAll('.reveal'));
+  if (reduce || !('IntersectionObserver' in window)) {
+    items.forEach(function (el) { el.classList.add('in'); });
+    return;
+  }
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('in');
+      io.unobserve(entry.target);
+    });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0 });
+
+  // anything already scrolled past (e.g. after a reload mid-page) must not stay hidden
+  items.forEach(function (el) {
+    if (el.getBoundingClientRect().bottom <= 0) el.classList.add('in');
+  });
+
+  items.forEach(function (el) {
+    var sibs = [].slice.call(el.parentElement.children).filter(function (c) {
+      return c.classList.contains('reveal');
+    });
+    el.style.setProperty('--d', Math.min(sibs.indexOf(el), 5) * 55 + 'ms');
+    io.observe(el);
+  });
+})();
+</script>
+
 </body>
 </html>
