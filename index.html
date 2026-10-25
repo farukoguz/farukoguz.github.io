@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ramazan Faruk Oğuz — Senior Software Engineer</title>
+<meta name="description" content="Senior software engineer in Porto, Portugal. Java, Apache Spark and Kafka pipelines on Azure at Critical TechWorks (BMW Group), plus AI agents in the engineering pipeline.">
+<link rel="canonical" href="https://farukoguz.github.io/">
+<meta name="theme-color" content="#ffffff">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Ramazan Faruk Oğuz — Senior Software Engineer">
+<meta property="og:description" content="Java, Apache Spark and Kafka pipelines on Azure. AI agents in the engineering pipeline. Based in Porto, Portugal.">
+<meta property="og:url" content="https://farukoguz.github.io/">
+<meta property="og:image" content="https://farukoguz.github.io/photo.png">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231b1b1b'/%3E%3Ctext x='32' y='43' font-family='Helvetica,Arial,sans-serif' font-size='30' font-weight='700' fill='%23fff' text-anchor='middle'%3ERO%3C/text%3E%3C/svg%3E">
+<style>
+  :root {
+    --ink: #1b1b1b;
+    --body: #2c2c2c;
+    --muted: #5c5c5c;
+    --rule: #e2e2e2;
+    --paper: #ffffff;
+    --link: #0b5cad;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--body);
+    font-family: "Avenir Next", "Helvetica Neue", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    font-size: 17px;
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--link); text-decoration: none; border-bottom: 1px solid rgba(11, 92, 173, .28); }
+  a:hover { border-bottom-color: currentColor; }
+  a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 2px; }
+
+  .skip {
+    position: absolute; left: -9999px; top: 0;
+    background: var(--ink); color: #fff; padding: .6rem 1rem; z-index: 10;
+  }
+  .skip:focus { left: 1rem; top: 1rem; }
+
+  .wrap { max-width: 900px; margin: 0 auto; padding: 0 28px; }
+
+  /* ---------- header ---------- */
+  .hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 44px;
+    align-items: start;
+    padding: 64px 0 34px;
+    border-bottom: 2px solid var(--ink);
+  }
+  .eyebrow {
+    margin: 0 0 .7rem;
+    font-size: .78rem;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  h1 {
+    margin: 0 0 .45rem;
+    font-size: clamp(2rem, 5.2vw, 2.75rem);
+    line-height: 1.06;
+    letter-spacing: -.01em;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .role {
+    margin: 0 0 1.15rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .role span { color: #b0b0b0; padding: 0 .35em; font-weight: 400; }
+  .summary { margin: 0 0 1.35rem; max-width: 34em; }
+
+  .contact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .3rem .9rem;
+    margin: 0 0 1.6rem;
+    padding: 0;
+    list-style: none;
+    font-size: .93rem;
+    color: var(--muted);
+  }
+  .contact li { display: flex; align-items: baseline; gap: .45rem; }
+  .contact li::before { content: ""; width: 4px; height: 4px; border-radius: 50%; background: #c9c9c9; }
+  .contact li:first-child::before { display: none; }
+
+  .actions { display: flex; flex-wrap: wrap; gap: .6rem; }
+  .btn {
+    display: inline-flex; align-items: center; gap: .45rem;
+    padding: .6rem 1.05rem;
+    border: 1px solid var(--ink);
+    border-radius: 6px;
+    background: var(--ink);
+    color: #fff;
+    font-size: .9rem;
+    font-weight: 600;
+    letter-spacing: .01em;
+    border-bottom: 1px solid var(--ink);
+  }
+  .btn:hover { background: #000; }
+  .btn.ghost { background: transparent; color: var(--ink); border-color: #cfcfcf; }
+  .btn.ghost:hover { background: #f6f6f6; border-color: #9c9c9c; }
+
+  .portrait {
+    width: 152px; height: 152px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    background: #f2f2f2;
+  }
+
+  /* ---------- sections ---------- */
+  main { padding-bottom: 24px; }
+  section { padding-top: 40px; }
+  h2 {
+    margin: 0 0 1.35rem;
+    font-size: .78rem;
+    font-weight: 700;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--ink);
+    display: flex; align-items: center; gap: 1rem;
+  }
+  h2::after { content: ""; flex: 1; height: 1px; background: var(--rule); }
+
+  .job { padding: 1.5rem 0 0; margin-top: 1.5rem; border-top: 1px solid var(--rule); }
+  .job:first-of-type { border-top: 0; margin-top: 0; padding-top: 0; }
+  .job-head { display: flex; justify-content: space-between; align-items: baseline; gap: 1.5rem; flex-wrap: wrap; }
+  .job h3 {
+    margin: 0;
+    font-size: 1.06rem;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.35;
+  }
+  .job h3 .track { font-weight: 500; color: var(--muted); font-size: .93rem; }
+  .dates { margin: 0; font-size: .86rem; font-variant-numeric: tabular-nums; color: var(--muted); white-space: nowrap; }
+  .org { margin: .15rem 0 .6rem; font-size: .93rem; color: var(--muted); }
+  .org em { font-style: italic; }
+
+  .bullets { margin: 0; padding-left: 1.15rem; }
+  .bullets li { margin-bottom: .45rem; padding-left: .15rem; }
+  .bullets li::marker { color: #a8a8a8; }
+  .bullets strong { color: var(--ink); }
+
+  .stack {
+    margin: .55rem 0 0;
+    font-size: .83rem;
+    color: #6a6a6a;
+    letter-spacing: .005em;
+  }
+
+  .edu { margin-bottom: 1.1rem; }
+  .edu:last-child { margin-bottom: 0; }
+  .edu-head { display: flex; justify-content: space-between; align-items: baseline; gap: 1.5rem; flex-wrap: wrap; }
+  .edu h3 { margin: 0; font-size: 1rem; font-weight: 700; color: var(--ink); }
+  .edu p { margin: .1rem 0 0; font-size: .9rem; color: var(--muted); }
+
+  .skills { margin: 0; display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: .45rem 1.4rem; }
+  .skills dt { font-weight: 600; color: var(--ink); font-size: .93rem; }
+  .skills dd { margin: 0; font-size: .93rem; }
+
+  .pubs { margin: 0; padding-left: 1.2rem; font-size: .93rem; }
+  .pubs li { margin-bottom: .6rem; }
+  .pubs .venue { color: var(--muted); }
+  .note { margin: .9rem 0 0; font-size: .86rem; color: var(--muted); }
+
+  footer {
+    margin-top: 48px;
+    padding: 22px 0 40px;
+    border-top: 1px solid var(--rule);
+    font-size: .84rem;
+    color: var(--muted);
+    display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+  }
+
+  /* ---------- small screens ---------- */
+  @media (max-width: 680px) {
+    body { font-size: 16px; }
+    .hero { grid-template-columns: 1fr; gap: 22px; padding-top: 40px; }
+    .portrait { width: 104px; height: 104px; order: -1; }
+    .jobs .job-head { display: block; }
+    .dates { margin-top: .1rem; }
+    .skills { grid-template-columns: 1fr; gap: .1rem; }
+    .skills dt { margin-top: .7rem; }
+    .skills dd { padding-bottom: .35rem; border-bottom: 1px solid #f0f0f0; }
+    footer { display: block; }
+  }
+
+  /* ---------- printing ---------- */
+  @page { size: A4; margin: 12mm 14mm; }
+  @media print {
+    body { font-size: 8.9pt; line-height: 1.32; color: #1b1b1b; }
+    .wrap { max-width: none; padding: 0; }
+    .skip, .actions, footer, h2::after { display: none; }
+    .hero { grid-template-columns: 1fr auto; gap: 10mm; padding: 0 0 3.5mm; border-bottom: 1.5pt solid #1b1b1b; }
+    .portrait { width: 22mm; height: 22mm; }
+    .eyebrow { font-size: 7.4pt; margin-bottom: 1mm; }
+    h1 { font-size: 20pt; margin-bottom: 1mm; }
+    .role { font-size: 9pt; margin-bottom: 2mm; }
+    .summary { font-size: 8.8pt; margin-bottom: 2mm; max-width: none; }
+    .contact { font-size: 7.8pt; margin-bottom: 0; gap: .1rem .6rem; }
+    .contact a { color: #1b1b1b; border: 0; }
+    section { padding-top: 3.1mm; }
+    h2 { font-size: 7.8pt; margin-bottom: 2mm; break-after: avoid; }
+    .job { padding-top: 2.1mm; margin-top: 2.1mm; }
+    .job:has(> .bullets > li:last-child:nth-child(-n+3)) { break-inside: avoid; }
+    .job-head { break-after: avoid; }
+    .org { break-after: avoid; margin-bottom: 1.2mm; }
+    .job h3 { font-size: 9.4pt; }
+    .job h3 .track { font-size: 8.6pt; }
+    .org, .dates, .skills dt, .skills dd { font-size: 8.1pt; }
+    .bullets { font-size: 8.8pt; padding-left: 4.5mm; }
+    .bullets li { margin-bottom: .45mm; break-inside: avoid; }
+    .stack { font-size: 7.6pt; margin-top: .7mm; break-before: avoid; }
+    .pubs { font-size: 8.1pt; padding-left: 4.5mm; }
+    .pubs li { margin-bottom: .7mm; break-inside: avoid; }
+    .note { font-size: 7.9pt; margin: .5mm 0 0; }
+    .edu { margin-bottom: 2mm; break-inside: avoid; }
+    .edu h3 { font-size: 9.4pt; }
+    .edu p { font-size: 8.1pt; }
+    .skills { grid-template-columns: 40mm minmax(0, 1fr); gap: .2rem 4mm; }
+    a { color: #1b1b1b; border-bottom: 0; }
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="wrap">
+
+  <header class="hero">
+    <div>
+      <p class="eyebrow">Porto, Portugal</p>
+      <h1>Ramazan Faruk Oğuz</h1>
+      <p class="role">Senior Software Engineer <span>·</span> Java <span>·</span> Apache Spark <span>·</span> Kafka <span>·</span> Azure</p>
+      <p class="summary">
+        Senior software engineer with 7+ years across mainframe, fintech and automotive. At Critical TechWorks
+        (BMW Group) I build large-scale Java and Apache Spark pipelines on Azure that carry more than
+        5 million order records per day. MS in Computer Science (GPA 3.86), with published research on
+        automated UI testing for interaction-heavy web systems.
+      </p>
+      <ul class="contact">
+        <li><a href="mailto:farukoguz98@gmail.com">farukoguz98@gmail.com</a></li>
+        <li><a href="https://www.linkedin.com/in/ramazan-faruk-o%C4%9Fuz-6a0341176/" rel="me">LinkedIn</a></li>
+        <li><a href="https://github.com/farukoguz" rel="me">github.com/farukoguz</a></li>
+        <li><a href="https://scholar.google.com/citations?user=JLtGY48AAAAJ" rel="me">Google Scholar</a></li>
+      </ul>
+      <div class="actions">
+        <a class="btn" href="Ramazan_Faruk_Oguz_CV.pdf" download>Download CV <span aria-hidden="true">↓</span> PDF</a>
+        <a class="btn ghost" href="mailto:farukoguz98@gmail.com">Email me</a>
+      </div>
+    </div>
+    <img class="portrait" src="photo.png" alt="Portrait of Ramazan Faruk Oğuz" width="800" height="800">
+  </header>
+
+  <main id="main">
+
+    <section aria-labelledby="experience">
+      <h2 id="experience">Experience</h2>
+
+      <article class="job">
+        <div class="job-head">
+          <h3>Rockstar Developer <span class="track">(Senior Software Engineer track)</span></h3>
+          <p class="dates">Jul 2022 – Present</p>
+        </div>
+        <p class="org">Critical TechWorks (BMW Group) · <em>Porto, Portugal</em></p>
+        <ul class="bullets">
+          <li><strong>AI agents in the pipeline.</strong> I helped bring an orchestrator into our pipeline that runs AI agents from GitHub Actions, starting with pull request review to take the repetitive parts off reviewers' hands, and I drive company-wide knowledge sharing on it through workshops.</li>
+          <li>As a main contributor, I helped migrate BMW Group's mobility reporting from batch-only pipelines to Java + Apache Spark Structured Streaming on Azure HDInsight, now handling more than 5 million order records per day from Kafka.</li>
+          <li>I design the pipelines for idempotent writes, explicit schema evolution and checkpointed state, so replays and retries stay safe for downstream consumers at that volume.</li>
+          <li>I maintain the batch Spark jobs that recalculate aggregates for consumers who need reconciled numbers, keeping batch and streaming views consistent.</li>
+          <li>REST services expose curated pipeline outputs, so downstream teams consume data without coupling to the Spark layer.</li>
+          <li>Cut pipeline runtime by 50% by profiling bottlenecks and reworking partitioning, join strategy and skew handling.</li>
+          <li>I review pull requests, mentor junior engineers, and work directly with data engineers, product owners and BMW stakeholders in Portugal, Germany and Hungary to turn requirements into pipeline designs.</li>
+        </ul>
+        <p class="stack">Java · Apache Spark · Structured Streaming · Kafka · Azure HDInsight · GitHub Actions · LLM APIs</p>
+      </article>
+
+      <article class="job">
+        <div class="job-head">
+          <h3>Software Engineering Consultant</h3>
+          <p class="dates">Jul 2022 – Aug 2023</p>
+        </div>
+        <p class="org">Aubay Portugal · <em>Porto, Portugal</em></p>
+        <ul class="bullets">
+          <li>Delivered BMW Group's mobility data platform as an external consultant, embedded with the Critical TechWorks team on Java/Spark pipelines while owning production work end to end.</li>
+          <li>Worked on the same pipelines as the permanent engineers, which led to a direct Critical TechWorks contract in August 2023.</li>
+        </ul>
+        <p class="stack">Java · Apache Spark · Docker</p>
+      </article>
+
+      <article class="job">
+        <div class="job-head">
+          <h3>Senior Software Engineer</h3>
+          <p class="dates">Apr 2021 – Jul 2022</p>
+        </div>
+        <p class="org">Garanti BBVA Teknoloji · <em>Istanbul, Turkey</em></p>
+        <ul class="bullets">
+          <li>Built and maintained the core credit-card cycle services (statement, billing, interest calculation) in Java 8 / Spring Boot, treating correctness as the design constraint rather than a testing phase.</li>
+          <li>Owned a Spring Boot service exposing cycle data through REST and gRPC contracts, keeping consumer systems decoupled from internal model changes.</li>
+          <li>Implemented card-number generation within BIN ranges, including check-digit derivation and product assignment.</li>
+          <li>Worked with Kafka and Apache NiFi streaming flows and designed for replay and idempotency, so reprocessing could not corrupt a balance.</li>
+          <li>Held the quality bar with JUnit 4 + Mockito coverage, SonarQube gates and code review; shipped through Jenkins, JFrog Artifactory, Bitbucket and OpenShift.</li>
+          <li>Supported production incidents and mentored junior engineers.</li>
+        </ul>
+        <p class="stack">Java 8 · Spring Boot · REST · gRPC · Kafka · Apache NiFi · Jenkins · OpenShift</p>
+      </article>
+
+      <article class="job">
+        <div class="job-head">
+          <h3>Junior Software Engineer</h3>
+          <p class="dates">Jul 2020 – Mar 2021</p>
+        </div>
+        <p class="org">Garanti BBVA Teknoloji · <em>Istanbul, Turkey</em></p>
+        <ul class="bullets">
+          <li>Joined the credit-card core cycle without a banking background, learning the domain rules behind statements and billing before changing code.</li>
+          <li>Implemented modules in Java 8 / Spring Boot and used JUnit/Mockito tests to trace defects from a wrong figure back to its source data.</li>
+        </ul>
+        <p class="stack">Java 8 · Spring Boot · JUnit · Mockito</p>
+      </article>
+
+      <article class="job">
+        <div class="job-head">
+          <h3>Software Expert</h3>
+          <p class="dates">Mar 2020 – Jun 2020</p>
+        </div>
+        <p class="org">Smartera · <em>Istanbul, Türkiye</em></p>
+        <ul class="bullets">
+          <li>Helped build an exploratory data analysis tool that let non-technical users interrogate and visualize their own datasets.</li>
+          <li>Worked across preprocessing and visualization in Python (pandas, NumPy, Matplotlib), turning messy exports into something decision-makers could read.</li>
+        </ul>
+        <p class="stack">Python · pandas · NumPy · Matplotlib</p>
+      </article>
+
+      <article class="job">
+        <div class="job-head">
+          <h3>Student Assistant</h3>
+          <p class="dates">Oct 2019 – Apr 2020</p>
+        </div>
+        <p class="org">Yıldız Technical University · <em>Istanbul, Türkiye</em></p>
+        <ul class="bullets">
+          <li>Standardized lab PC images with Symantec Ghost and migrated student and senior projects onto a shared platform, so faculty and students could find them.</li>
+        </ul>
+      </article>
+
+      <article class="job">
+        <div class="job-head">
+          <h3>Scholarship Holder</h3>
+          <p class="dates">Oct 2019 – Mar 2020</p>
+        </div>
+        <p class="org">TÜBİTAK BİLGEM · <em>Kocaeli, Türkiye</em></p>
+        <ul class="bullets">
+          <li>Continued the A* path-finding project with a focus on visualization and integration, building the visualization layer and joining the components into one working flow so the algorithm could be inspected and reused, not only read in code.</li>
+        </ul>
+      </article>
+
+      <article class="job">
+        <div class="job-head">
+          <h3>Summer Intern</h3>
+          <p class="dates">Jun 2019 – Aug 2019</p>
+        </div>
+        <p class="org">TÜBİTAK BİLGEM · <em>Kocaeli, Türkiye</em></p>
+        <ul class="bullets">
+          <li>Implemented and deployed A* in native Python, applied to maze path-finding and structured so the same approach could extend to autonomous driving scenarios.</li>
+        </ul>
+      </article>
+
+      <article class="job">
+        <div class="job-head">
+          <h3>Summer Intern</h3>
+          <p class="dates">Jun 2018 – Aug 2018</p>
+        </div>
+        <p class="org">Yıldız Technical University Software Quality Lab · <em>Istanbul, Turkey</em></p>
+        <ul class="bullets">
+          <li>Ran a structured SQL vs NoSQL comparison on the same workload, using MySQL and MongoDB with the benchmark program written in C#.</li>
+          <li>Published the results as a conference paper at Akademik Bilişim, under the supervision of Dr. Mehmet S. Aktaş.</li>
+        </ul>
+      </article>
+    </section>
+
+    <section aria-labelledby="education">
+      <h2 id="education">Education</h2>
+      <div class="edu">
+        <div class="edu-head">
+          <h3>Yıldız Technical University — MS, Computer Science</h3>
+          <p class="dates">2020 – 2022</p>
+        </div>
+        <p>GPA 3.86 / 4.00 · Thesis: End-to-end automated UI testing framework for web applications with intensive user-system interaction.</p>
+      </div>
+      <div class="edu">
+        <div class="edu-head">
+          <h3>Yıldız Technical University — BSc, Computer Engineering</h3>
+          <p class="dates">2016 – 2020</p>
+        </div>
+        <p>GPA 3.75 / 4.00 · Graduated 3rd in class.</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="skills">
+      <h2 id="skills">Skills</h2>
+      <dl class="skills">
+        <dt>Languages</dt><dd>Java, Python, C#, SQL, COBOL, PL/I, JCL</dd>
+        <dt>Big Data</dt><dd>Apache Spark (Structured Streaming, batch), Apache Kafka, Apache NiFi, Azure HDInsight</dd>
+        <dt>Backend</dt><dd>Spring Boot, REST, gRPC, Microservices</dd>
+        <dt>Cloud &amp; DevOps</dt><dd>Microsoft Azure, Docker, OpenShift, Jenkins, JFrog Artifactory, Bitbucket, Git</dd>
+        <dt>Data Stores</dt><dd>IBM Db2, MySQL, MongoDB, z/OS</dd>
+        <dt>Testing</dt><dd>JUnit 4, Mockito, SonarQube</dd>
+      </dl>
+    </section>
+
+    <section aria-labelledby="publications">
+      <h2 id="publications">Publications</h2>
+      <ol class="pubs">
+        <li>Y. Uygun, R.F. Oğuz, E. Ölmezoğulları, M.S. Aktaş. “On the large-scale graph data processing for user interface testing in big data science projects.” <span class="venue">IEEE BigData 2020</span>, pp. 2049–2056.</li>
+        <li>I. Erdem, R.F. Oğuz, E. Ölmezoğulları, M.S. Aktaş. “Test script generation based on hidden Markov models learning from user browsing behaviors.” <span class="venue">IEEE BigData 2021</span>, pp. 2998–3005.</li>
+        <li>R.F. Oğuz, M. Öz, E. Ölmezoğulları, M.S. Aktaş. “Extracting information from large scale graph data: case study on automated UI testing.” <span class="venue">Euro-Par 2021 Workshops, LNCS</span>, pp. 364–375.</li>
+        <li>R.F. Oğuz, I. Erdem, E. Ölmezoğulları, M.S. Aktaş. “End-to-end automated UI testing workflow for web sites with intensive user–system interactions.” <span class="venue">International Journal of Software Engineering and Knowledge Engineering</span>, 2022.</li>
+        <li>R.F. Oğuz, Y. Uygun, M.S. Aktaş, İ. Aykurt. “On the use of technical analysis indicators for stock market price movement direction prediction.” <span class="venue">SIU 2019</span>.</li>
+      </ol>
+      <p class="note">132 citations, h-index 6 — <a href="https://scholar.google.com/citations?user=JLtGY48AAAAJ">Google Scholar profile</a></p>
+    </section>
+
+    <section aria-labelledby="languages">
+      <h2 id="languages">Languages</h2>
+      <p>English — professional working proficiency · Portuguese — intermediate · German — beginner</p>
+    </section>
+
+  </main>
+
+  <footer>
+    <span>Last updated October 2026.</span>
+    <span>Same content as the <a href="Ramazan_Faruk_Oguz_CV.pdf">PDF version</a>.</span>
+  </footer>
+</div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Ramazan Faruk Oğuz",
+  "jobTitle": "Senior Software Engineer",
+  "url": "https://farukoguz.github.io/",
+  "image": "https://farukoguz.github.io/photo.png",
+  "address": { "@type": "PostalAddress", "addressLocality": "Porto", "addressCountry": "PT" },
+  "worksFor": { "@type": "Organization", "name": "Critical TechWorks" },
+  "alumniOf": { "@type": "CollegeOrUniversity", "name": "Yıldız Technical University" },
+  "knowsLanguage": ["English", "Portuguese", "German", "Turkish"],
+  "sameAs": [
+    "https://github.com/farukoguz",
+    "https://www.linkedin.com/in/ramazan-faruk-o%C4%9Fuz-6a0341176/",
+    "https://scholar.google.com/citations?user=JLtGY48AAAAJ"
+  ]
+}
+</script>
+</body>
+</html>
